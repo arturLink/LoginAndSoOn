@@ -40,49 +40,33 @@ def newAc():
 				break
 	print(f"Your own password: {password}")
 
-def passwordcheck(password)->bool:
+def passwordcheck(password):
 	"""
 	"""
-	cond=0
+	cond=False
 	passwordChek=list(password)
 	for i in passwordChek:
-		if i.isupper() and i.isdigit() and i.islower() and i.islapha():
+		if i.isupper():
 			cond=True
-		else:
-			cond=False
-	return cond#dorabotat
+		if i.isdigit():
+			cond=True
+		if i.islower():
+			cond=True
+	return cond
 
-def logIn():
+def logIncheck(username,password,users:list,passwords:list):
 	"""
 	"""
-	un=input("Enter your username: ")
-	print(f"Hello, {un}!")
-	pw=input("Enter your password: ")
-	a=logIncheck(un,pw)
-	while a==0:
-		print("Either username was incorrect or password. Try again")
-		un=input("Enter your username: ")
-		print(f"Hello, {un}!")
-		pw=input("Enter your password: ")
-		a=logIncheck(un,pw)
-		if a==True:
-			break
-
-def logIncheck(username,password)->bool:
-	"""
-	"""
-	condUn=0
-	condPw=0
-	users=["bigDaddySvin", "GreatGuy", "bunda"]
-	passwords=["mamasvin","GreatestGuy","ULTRAbunda228"]
+	a=len(users)
+	b=len(passwords) #dorabotat
+	condUn=True
+	condPw=True
 	if username not in users:
 		print("Incorrect username!")
 		condUn=False
-	else:
-		True
 	if password not in passwords:
 		print("Incorrect password!")
 		condPw=False
-	else:
-		True
-	return condUn and condPw#dorabotat
+	if condUn and condPw:
+		print("Everything is correct you may log in!")
+	return condUn, condPw
