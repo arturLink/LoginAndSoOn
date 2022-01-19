@@ -38,7 +38,7 @@ def newAc():
 			a=passwordcheck(password)
 			if a==True:
 				break
-	print(f"Your own password: {password}")
+	print(f"Your own password: {password}")#seems useless now
 
 def passwordcheck(password):
 	"""
@@ -57,8 +57,6 @@ def passwordcheck(password):
 def logIncheck(username,password,users:list,passwords:list):
 	"""
 	"""
-	a=len(users)
-	b=len(passwords) #dorabotat
 	condUn=True
 	condPw=True
 	if username not in users:
@@ -67,6 +65,27 @@ def logIncheck(username,password,users:list,passwords:list):
 	if password not in passwords:
 		print("Incorrect password!")
 		condPw=False
+	a=len(users)
+	b=len(passwords) #dorabotat
+	
 	if condUn and condPw:
 		print("Everything is correct you may log in!")
 	return condUn, condPw
+
+def failist_lugemine(f:str,l:list):
+	fail=open(f,"r") #encoding="utf-8-sig"
+	for rida in fail:
+		l.append(rida.strip()) #"\n"
+	fail.close()
+	return l
+
+def failisse_salvestamine(f:str,l:list):
+	fail=open(f,"w")
+	for el in l:
+		fail.write(el+"\n")
+	fail.close()
+
+def rida_salvestamine(f:str,rida:str):
+	fail=open(f,"a")
+	fail.write(rida+"\n")
+	fail.close()
